@@ -2,10 +2,7 @@
   "mode": "offline_independent_return_trips",
   "baseline": {
     "budget_wh": 55,
-    "selected": [
-      "water",
-      "books"
-    ],
+    "selected": ["water", "books"],
     "priority": 12,
     "energy_wh": 51.8,
     "reserve_wh": 25,
@@ -34,10 +31,7 @@
   "sensitivity": {
     "base_cost_factor": 1.4,
     "budget_wh": 55,
-    "selected": [
-      "books",
-      "science-kit"
-    ],
+    "selected": ["books", "science-kit"],
     "priority": 11,
     "energy_wh": 54.48,
     "reserve_wh": 25,
@@ -65,4 +59,3 @@
   },
   "notice": "Illustrative study assumptions; measure energy and obtain manufacturer limits before a physical exercise."
 }
-

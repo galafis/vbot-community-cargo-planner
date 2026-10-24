@@ -1,13 +1,16 @@
 {
   "name": "vbot-community-cargo-planner",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Plan supervised material-carrying exercises with a return reserve, round-trip distances, explicit measured parameters and an explainable payload/energy constrained selection.",
+  "description": "Choose educational supplies under declared payload and energy assumptions. Compare what changes when reserves, carrier mass or energy cost increase.",
   "scripts": {
     "test": "node --test",
     "demo": "node cli.mjs examples/baseline.json",
-    "serve": "node server.mjs"
+    "study": "node study.mjs examples/baseline.json",
+    "serve": "node server.mjs",
+    "examples:check": "node scripts/check-examples.mjs",
+    "check": "node --check app.mjs && node --test && node scripts/check-examples.mjs"
   },
   "engines": {
     "node": ">=22"

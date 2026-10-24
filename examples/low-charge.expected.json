@@ -1,0 +1,69 @@
+{
+  "mode": "offline_independent_return_trips",
+  "baseline": {
+    "budget_wh": 15,
+    "selected": ["reading-kit"],
+    "priority": 6,
+    "energy_wh": 12.6,
+    "reserve_wh": 30,
+    "remaining_wh": 32.4,
+    "excluded": [
+      {
+        "id": "tool-case",
+        "reason": "payload_with_carrier"
+      }
+    ],
+    "item_costs": [
+      {
+        "id": "reading-kit",
+        "energy_wh": 12.6
+      },
+      {
+        "id": "science-box",
+        "energy_wh": 26.12
+      },
+      {
+        "id": "notebooks",
+        "energy_wh": 16
+      },
+      {
+        "id": "posters",
+        "energy_wh": 7.7
+      }
+    ]
+  },
+  "sensitivity": {
+    "base_cost_factor": 1.4,
+    "budget_wh": 15,
+    "selected": ["posters"],
+    "priority": 2,
+    "energy_wh": 10.1,
+    "reserve_wh": 30,
+    "remaining_wh": 34.9,
+    "excluded": [
+      {
+        "id": "tool-case",
+        "reason": "payload_with_carrier"
+      }
+    ],
+    "item_costs": [
+      {
+        "id": "reading-kit",
+        "energy_wh": 16.44
+      },
+      {
+        "id": "science-box",
+        "energy_wh": 33.8
+      },
+      {
+        "id": "notebooks",
+        "energy_wh": 20.8
+      },
+      {
+        "id": "posters",
+        "energy_wh": 10.1
+      }
+    ]
+  },
+  "notice": "Illustrative study assumptions; measure energy and obtain manufacturer limits before a physical exercise."
+}

@@ -1,78 +1,162 @@
-# Community Cargo Planner · Planejador de Materiais
+<p align="center"><img src="assets/mark.svg" width="52" alt=""></p>
+
+<h1 align="center">Community Cargo Planner</h1>
+
+<p align="center"><strong>Useful cargo. A planned return.</strong><br>Materiais úteis. Retorno planejado.</p>
+
+<p align="center">
+<a href="https://github.com/galafis/vbot-community-cargo-planner/actions/workflows/checks.yml"><img src="https://github.com/galafis/vbot-community-cargo-planner/actions/workflows/checks.yml/badge.svg" alt="Checks"></a>
+<img src="https://img.shields.io/badge/Node.js-22%2B-23774b" alt="Node.js 22+">
+<img src="https://img.shields.io/badge/scenarios-5-f1e5d1?labelColor=354c4a" alt="Five scenarios">
+<img src="https://img.shields.io/badge/license-MIT-526b86" alt="MIT license">
+</p>
+
+<p align="center"><a href="https://galafis.github.io/vbot-community-cargo-planner/?lang=en"><strong>Open the interactive study</strong></a> · <a href="https://galafis.github.io/vbot-community-cargo-planner/?lang=pt"><strong>Abrir estudo em português</strong></a> · <a href="docs/DEMO.md">Guided walkthrough</a> · <a href="docs/EXPERIMENTS.md">Reproduce the examples</a></p>
+
+[![Actual workbench screenshot](assets/workbench.png)](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=library-outreach)
 
 [English](#english) · [Português](#português)
 
-[![Checks](https://github.com/galafis/vbot-community-cargo-planner/actions/workflows/checks.yml/badge.svg)](https://github.com/galafis/vbot-community-cargo-planner/actions/workflows/checks.yml)
-
 ## English
 
-Plan supervised material-carrying exercises with a return reserve, round-trip distances, explicit measured parameters and an explainable payload/energy constrained selection.
+Choose educational supplies under declared payload and energy assumptions. Compare what changes when reserves, carrier mass or energy cost increase.
 
-**Status: working offline software prototype, synthetic examples, no physical validation.** Built specifically to investigate Vbot companion use within the capabilities the manufacturer permits. A standard unit without an open SDK is welcome.
+**Research question:** Which independent return trips maximize declared priority without spending the return reserve?
 
-### Try it
+This is a working, independent software study for a proposed Vbot companion-robotics program. You can run every example without a robot, account, package installation or API key. Physical validation has not been performed.
 
-Node.js 22 or later. No packages, robot, account or API key required. After cloning, computation runs offline.
+### Explore in one minute
+
+1. [Open **Library workshop**](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=library-outreach).
+2. Inspect the chart and the explanation below it. The starting result is **3 supplies · 54.72/55 Wh · 19 priority**.
+3. Adjust a control or select a contrasting example. Download a printable HTML report, a CSV evidence table or the full JSON analysis.
+
+[View a portable example report](https://galafis.github.io/vbot-community-cargo-planner/examples/sample-report.html).
+
+The JSON editor is available under **Advanced**; the main study uses guided controls.
+
+### What you can investigate
+
+- Exact subset selection for up to 20 items, rather than a greedy priority ranking.
+- Payload includes the carrier; energy includes outbound payload and the empty return.
+- Explicit starting charge and return reserve with independent out-and-back trips.
+- Six cost-sensitivity points that re-optimize the selection at each point.
+- Item-level exclusion reasons distinguish overload from energy/priority tradeoffs.
+
+All five studies include a responsive English/Portuguese interface, keyboard focus styles, synthetic narrated examples and local report exports. Analysis runs in your browser after the page loads.
+
+### Five examples, five questions
+
+| Example                                                                                                             | Question it exposes                                               | Reproducible core result               |
+| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------- |
+| [Supplies for an event](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=baseline)           | Compare priorities, return trips and an overloaded box.           | 2 supplies · 51.8/55 Wh · 12 priority  |
+| [Library workshop](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=library-outreach)        | Five supplies compete for the same energy budget.                 | 3 supplies · 54.72/55 Wh · 19 priority |
+| [Lower starting charge](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=low-charge)         | A larger reserve leaves less energy for the exercise.             | 1 supplies · 12.6/15 Wh · 6 priority   |
+| [The carrier has mass too](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=carrier-mass)    | Increase carrier mass and review the exclusions.                  | 3 supplies · 40.9/55 Wh · 13 priority  |
+| [Uncertain energy cost](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=energy-uncertainty) | A higher energy-cost assumption can change the optimal selection. | 2 supplies · 53.12/55 Wh · 14 priority |
+
+These are deterministic scenario results, not field measurements. [Experiment notes](docs/EXPERIMENTS.md) distinguish expected regression outputs from independent arithmetic and failure-case tests.
+
+### Run locally
+
+Install Node.js 22 or newer. No npm dependencies are required.
 
 ```sh
 git clone https://github.com/galafis/vbot-community-cargo-planner.git
 cd vbot-community-cargo-planner
-npm test
-npm run demo
 npm run serve
 ```
 
-Open `http://127.0.0.1:8765` for the English/Portuguese workbench. Edit the synthetic scenario, run the same engine used by the CLI and export the result. The server binds only to your own computer. Ctrl+C stops it. Use one workbench at a time on port 8765.
+Open **http://127.0.0.1:8765**. The local server binds to your computer only. Stop with Ctrl+C. For another port, use `node server.mjs 8766`.
 
 ```sh
+npm run check                                  # syntax, domain tests, examples and server checks
+node cli.mjs examples/library-outreach.json            # core analysis
+node study.mjs examples/library-outreach.json          # analysis plus derived insights
 node cli.mjs examples/baseline.json new-result.json
 ```
 
-Existing output files are refused. Exit 1 means invalid input or an I/O failure; exit 0 means analysis completed, including review findings. Do not infer suitability from the exit code.
+The CLI refuses to overwrite an existing output file. Exit 1 means invalid input or an I/O failure; review findings are valid analytical outputs and do not change the exit code.
 
-### Implemented method
-
-Enumerate all subsets of at most 20 items. Every selected item is a separate return trip. Total energy is base_Wh_per_m * round_trip_m + load_Wh_per_kg_m * kg * outbound_m + service_Wh. Payload includes the carrier. Maximize declared priority, then minimize energy, then use input order. Sensitivity recalculates with a higher base cost.
-
-### Worked example
-
-One 2 kg item 10 m away: round trip base energy 20 * 0.12 = 2.4 Wh; loaded outbound and carrier energy (2 + 2 * 0.5) * 10 * 0.02 = 0.6 Wh; service = 1 Wh. Total = 4 Wh. Budget = 100 * (0.8 - 0.25) = 55 Wh. Remaining charge = 80 - 4 = 76 Wh.
-
-### Vbot relationship and limits
-
-An educational planner for one out-and-back trip per item. Limits are operator study assumptions, never manufacturer ratings. No towing, medical delivery or robot navigation.
-
-We can use native features, the official app and manually recorded observations. SDK access is optional; no bypass, reverse engineering or unsupported modification is planned. [Permitted workflow](docs/VBOT_WORKFLOW.md).
+### How the study works
 
 ```mermaid
 flowchart LR
-  A[Native feature / Recurso nativo] --> B[Operator observation / Observação]
-  B --> C[Validated scenario / Cenário validado]
-  C --> D[Offline analysis / Análise offline]
-  D --> E[Human review / Revisão humana]
+  A[Supplies and declared limits] --> B[Check payload with carrier]
+  B --> C[Price independent return trips]
+  C --> D[Exact subset search]
+  D --> E[Preserve energy reserve]
+  E --> F[Re-optimize cost sensitivity]
+  F --> G[Explain selection and exclusions]
+```
+
+**Method:** Exact subset optimization with carrier mass, return trips and sensitivity. The core engine and the insight layer are pure local calculations shared by browser and CLI. [Architecture](docs/ARCHITECTURE.md) · [Domain method](docs/METHOD.md) · [Input contract](docs/DATA_CONTRACT.md).
+
+### Evidence and scope
+
+| Evidence available now                                                         | Next evidence needed                                                  |
+| ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| 19 automated tests, five reproducible fixtures and a real interface screenshot | Measurements from a specific supplied Vbot unit                       |
+| Deterministic calculations and explicit counterexamples                        | Repeated permitted exercises with operator observations               |
+| Bilingual methods, reports and example inputs                                  | Appropriate authorization before institutional or participant studies |
+
+**A standard Vbot without an open SDK is welcome.** The proposed first hardware stage uses native features, the official app and manual observations. Any later programmatic integration is optional and must be permitted by the manufacturer. [Native workflow](docs/VBOT_WORKFLOW.md) · [90-day study plan](docs/STUDY_PLAN.md).
+
+### Project map
+
+```text
+src/        Pure domain engine, contracts and derived insights
+examples/   Five narrated inputs and reproducible expected outputs
+app.mjs     Guided bilingual browser workbench
+styles.css  Responsive, printable visual system
+cli.mjs     Core analysis from a local JSON file
+study.mjs   Complete study from a local JSON file
+tests/      Domain, insight, reproduction and HTTP checks
+docs/       Walkthrough, experiments, method and study plan
 ```
 
 ## Português
 
-Planeje exercícios supervisionados de transporte de materiais com reserva de retorno, trajetos de ida e volta, parâmetros medidos e seleção explicável por carga e energia.
+Escolha materiais educacionais considerando hipóteses explícitas de carga e energia. Compare o efeito da reserva, do suporte e do consumo.
 
-**Estado: protótipo funcional de software offline, exemplos fictícios, sem validação física.** Focado no estudo do Vbot conforme as capacidades permitidas pelo fabricante. Uma unidade comum sem SDK aberto é suficiente para iniciar.
+**Pergunta do estudo:** Quais viagens independentes maximizam a prioridade sem consumir a reserva de retorno?
 
-### Experimentar
+O projeto está pronto para exploração em software. Os exemplos são fictícios e a validação física ainda depende de uma unidade. Uma unidade comum, sem SDK aberto, é suficiente para iniciar a fase proposta com recursos nativos e observação manual.
 
-Execute os comandos acima com Node.js 22 ou superior. Não é necessário instalar dependências. Abra a bancada local e selecione Português. Edite o cenário, recalcule e exporte o resultado. Os testes e a linha de comando usam o mesmo motor da interface.
+### Comece por um exemplo concreto
 
-Planejamento didático de viagens independentes de ida e volta. Limites do cenário são hipóteses de estudo e precisam de medição; não são especificações garantidas do fabricante.
+[Abra **Oficina na biblioteca**](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=library-outreach). O resultado inicial é **3 materiais · 54.72/55 Wh · 19 pontos**. Observe o gráfico, mude um parâmetro ou escolha outro cenário. A interface explica os resultados e exporta relatório HTML imprimível, tabela CSV e análise JSON.
 
-Podemos trabalhar com funções nativas, aplicativo oficial e observações manuais. Acesso por SDK é opcional. Veja o [fluxo permitido](docs/VBOT_WORKFLOW.md) e a [validação](docs/VALIDATION.md). Os resultados demonstram comportamento do software; benefícios sociais e desempenho físico ainda precisam ser estudados.
+### Funcionalidades
 
-## Documentation · Documentação
+- Seleção exata de subconjuntos com até 20 materiais.
+- O suporte entra na carga e na energia; o retorno vazio também é calculado.
+- Carga inicial e reserva explícitas, com viagens independentes de ida e volta.
+- Seis pontos de sensibilidade recalculam a seleção quando o consumo aumenta.
+- Motivos por material distinguem excesso de carga de compromisso entre energia e prioridade.
 
-- [Input contract and method · Contrato e método](docs/METHOD.md)
-- [Validation and reproducibility · Validação](docs/VALIDATION.md)
-- [Vbot workflow · Fluxo Vbot](docs/VBOT_WORKFLOW.md)
-- [Study plan · Plano de estudo](docs/STUDY_PLAN.md)
-- [Synthetic input · Entrada fictícia](examples/baseline.json)
-- [Expected output · Saída esperada](examples/expected.json)
+### Exemplos disponíveis
 
-Independent work by [Gabriel Demetrios Lafis](https://www.linkedin.com/in/gabriel-demetrios-lafis/) · [Existing robotics portfolio](https://github.com/galafis#robotics). Vbot is a third-party product/brand; this repository is not an official SDK or vendor endorsement.
+| Exemplo                                                                                                           | O que permite examinar                                          | Resultado reproduzível                |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------- |
+| [Materiais para um evento](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=baseline)      | Compare prioridade, retorno e uma caixa que excede a carga.     | 2 materiais · 51.8/55 Wh · 12 pontos  |
+| [Oficina na biblioteca](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=library-outreach) | Cinco materiais concorrem pelo mesmo orçamento de energia.      | 3 materiais · 54.72/55 Wh · 19 pontos |
+| [Carga inicial reduzida](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=low-charge)      | Uma reserva maior deixa menos energia disponível para a missão. | 1 materiais · 12.6/15 Wh · 6 pontos   |
+| [O suporte também pesa](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=carrier-mass)     | Aumente a massa do suporte e reveja as exclusões.               | 3 materiais · 40.9/55 Wh · 13 pontos  |
+| [Consumo incerto](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=energy-uncertainty)     | Uma hipótese de consumo maior pode mudar a seleção ótima.       | 2 materiais · 53.12/55 Wh · 14 pontos |
+
+### Executar e contribuir
+
+Use os comandos da seção em inglês com Node.js 22 ou superior. Não é necessário instalar pacotes. `npm run check` executa verificações de sintaxe, testes e reprodução dos cenários. O guia [DEMO](docs/DEMO.md) explica um percurso de exploração; [EXPERIMENTS](docs/EXPERIMENTS.md) registra os resultados e suas limitações.
+
+Sugestões úteis incluem novos cenários fictícios, cálculos independentes, melhorias de acessibilidade da interface e protocolos de observação autorizados. Veja [CONTRIBUTING](CONTRIBUTING.md).
+
+## Study collection · Coleção de estudos
+
+[01 · Companion Follow Lab](https://github.com/galafis/vbot-accessible-follow-lab) · [02 · Portuguese Interaction Bench](https://github.com/galafis/vbot-ptbr-interaction-bench) · [03 · Community Cargo Planner](https://github.com/galafis/vbot-community-cargo-planner) · [04 · Inclusive Encounter Kit](https://github.com/galafis/vbot-inclusive-encounter-kit) · [05 · Community Observation Lab](https://github.com/galafis/vbot-community-observation-lab)
+
+---
+
+Created by **[Gabriel Demetrios Lafis](https://www.linkedin.com/in/gabriel-demetrios-lafis/)** · [Applied AI and robotics portfolio](https://github.com/galafis#robotics)
+
+MIT-licensed independent work. Vbot is a third-party brand; this is not an official SDK or an announced Vbot/USP partnership.

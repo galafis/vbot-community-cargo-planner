@@ -1,0 +1,67 @@
+[
+  {
+    "id": "baseline",
+    "title": {
+      "pt": "Materiais para um evento",
+      "en": "Supplies for an event"
+    },
+    "context": {
+      "pt": "Compare prioridade, retorno e uma caixa que excede a carga.",
+      "en": "Compare priorities, return trips and an overloaded box."
+    },
+    "file": "baseline.json",
+    "expected": "expected.json"
+  },
+  {
+    "id": "library-outreach",
+    "title": {
+      "pt": "Oficina na biblioteca",
+      "en": "Library workshop"
+    },
+    "context": {
+      "pt": "Cinco materiais concorrem pelo mesmo orçamento de energia.",
+      "en": "Five supplies compete for the same energy budget."
+    },
+    "file": "library-outreach.json",
+    "expected": "library-outreach.expected.json"
+  },
+  {
+    "id": "low-charge",
+    "title": {
+      "pt": "Carga inicial reduzida",
+      "en": "Lower starting charge"
+    },
+    "context": {
+      "pt": "Uma reserva maior deixa menos energia disponível para a missão.",
+      "en": "A larger reserve leaves less energy for the exercise."
+    },
+    "file": "low-charge.json",
+    "expected": "low-charge.expected.json"
+  },
+  {
+    "id": "carrier-mass",
+    "title": {
+      "pt": "O suporte também pesa",
+      "en": "The carrier has mass too"
+    },
+    "context": {
+      "pt": "Aumente a massa do suporte e reveja as exclusões.",
+      "en": "Increase carrier mass and review the exclusions."
+    },
+    "file": "carrier-mass.json",
+    "expected": "carrier-mass.expected.json"
+  },
+  {
+    "id": "energy-uncertainty",
+    "title": {
+      "pt": "Consumo incerto",
+      "en": "Uncertain energy cost"
+    },
+    "context": {
+      "pt": "Uma hipótese de consumo maior pode mudar a seleção ótima.",
+      "en": "A higher energy-cost assumption can change the optimal selection."
+    },
+    "file": "energy-uncertainty.json",
+    "expected": "energy-uncertainty.expected.json"
+  }
+]

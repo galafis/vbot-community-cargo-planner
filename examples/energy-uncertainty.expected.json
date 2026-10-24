@@ -1,0 +1,69 @@
+{
+  "mode": "offline_independent_return_trips",
+  "baseline": {
+    "budget_wh": 55,
+    "selected": ["reading-kit", "science-box"],
+    "priority": 14,
+    "energy_wh": 53.12,
+    "reserve_wh": 25,
+    "remaining_wh": 26.88,
+    "excluded": [
+      {
+        "id": "tool-case",
+        "reason": "payload_with_carrier"
+      }
+    ],
+    "item_costs": [
+      {
+        "id": "reading-kit",
+        "energy_wh": 17.4
+      },
+      {
+        "id": "science-box",
+        "energy_wh": 35.72
+      },
+      {
+        "id": "notebooks",
+        "energy_wh": 22
+      },
+      {
+        "id": "posters",
+        "energy_wh": 10.7
+      }
+    ]
+  },
+  "sensitivity": {
+    "base_cost_factor": 1.8,
+    "budget_wh": 55,
+    "selected": ["reading-kit", "posters"],
+    "priority": 8,
+    "energy_wh": 46.82,
+    "reserve_wh": 25,
+    "remaining_wh": 33.18,
+    "excluded": [
+      {
+        "id": "tool-case",
+        "reason": "payload_with_carrier"
+      }
+    ],
+    "item_costs": [
+      {
+        "id": "reading-kit",
+        "energy_wh": 28.92
+      },
+      {
+        "id": "science-box",
+        "energy_wh": 58.76
+      },
+      {
+        "id": "notebooks",
+        "energy_wh": 36.4
+      },
+      {
+        "id": "posters",
+        "energy_wh": 17.9
+      }
+    ]
+  },
+  "notice": "Illustrative study assumptions; measure energy and obtain manufacturer limits before a physical exercise."
+}

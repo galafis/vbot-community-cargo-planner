@@ -1,0 +1,33 @@
+{
+  "slug": "vbot-community-cargo-planner",
+  "short": {
+    "en": "Community Cargo Planner",
+    "pt": "Planejador de Materiais Comunitários"
+  },
+  "tag": {
+    "en": "Materials & mission planning",
+    "pt": "Materiais e planejamento"
+  },
+  "headline": {
+    "en": "Useful cargo. A planned return.",
+    "pt": "Materiais úteis. Retorno planejado."
+  },
+  "description": {
+    "en": "Choose educational supplies under declared payload and energy assumptions. Compare what changes when reserves, carrier mass or energy cost increase.",
+    "pt": "Escolha materiais educacionais considerando hipóteses explícitas de carga e energia. Compare o efeito da reserva, do suporte e do consumo."
+  },
+  "color": "#a35b20",
+  "question": {
+    "en": "Which independent return trips maximize declared priority without spending the return reserve?",
+    "pt": "Quais viagens independentes maximizam a prioridade sem consumir a reserva de retorno?"
+  },
+  "method": "Exact subset optimization with carrier mass, return trips and sensitivity",
+  "outcome": {
+    "en": "An explainable selection, visible exclusions and an energy-cost sensitivity curve.",
+    "pt": "Uma seleção explicável, exclusões visíveis e curva de sensibilidade ao consumo."
+  },
+  "number": 3,
+  "version": "0.2.0",
+  "source": "https://github.com/galafis/vbot-community-cargo-planner",
+  "demo": "https://galafis.github.io/vbot-community-cargo-planner/"
+}
