@@ -1,0 +1,68 @@
+{
+  "mode": "offline_independent_return_trips",
+  "baseline": {
+    "budget_wh": 55,
+    "selected": [
+      "water",
+      "books"
+    ],
+    "priority": 12,
+    "energy_wh": 51.8,
+    "reserve_wh": 25,
+    "remaining_wh": 28.2,
+    "excluded": [
+      {
+        "id": "heavy-box",
+        "reason": "payload_with_carrier"
+      }
+    ],
+    "item_costs": [
+      {
+        "id": "water",
+        "energy_wh": 22
+      },
+      {
+        "id": "books",
+        "energy_wh": 29.8
+      },
+      {
+        "id": "science-kit",
+        "energy_wh": 12.2
+      }
+    ]
+  },
+  "sensitivity": {
+    "base_cost_factor": 1.4,
+    "budget_wh": 55,
+    "selected": [
+      "books",
+      "science-kit"
+    ],
+    "priority": 11,
+    "energy_wh": 54.48,
+    "reserve_wh": 25,
+    "remaining_wh": 25.52,
+    "excluded": [
+      {
+        "id": "heavy-box",
+        "reason": "payload_with_carrier"
+      }
+    ],
+    "item_costs": [
+      {
+        "id": "water",
+        "energy_wh": 28.72
+      },
+      {
+        "id": "books",
+        "energy_wh": 38.44
+      },
+      {
+        "id": "science-kit",
+        "energy_wh": 16.04
+      }
+    ]
+  },
+  "notice": "Illustrative study assumptions; measure energy and obtain manufacturer limits before a physical exercise."
+}
+

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "limits": {
+    "battery_wh": 100,
+    "available_fraction": 0.8,
+    "reserve_fraction": 0.25,
+    "max_payload_kg": 4,
+    "carrier_kg": 0.5,
+    "base_wh_per_m": 0.12,
+    "load_wh_per_kg_m": 0.02,
+    "service_wh": 1,
+    "sensitivity_factor": 1.4
+  },
+  "items": [
+    {
+      "id": "water",
+      "kg": 2,
+      "outbound_m": 70,
+      "priority": 5
+    },
+    {
+      "id": "books",
+      "kg": 3,
+      "outbound_m": 90,
+      "priority": 7
+    },
+    {
+      "id": "science-kit",
+      "kg": 1,
+      "outbound_m": 40,
+      "priority": 4
+    },
+    {
+      "id": "heavy-box",
+      "kg": 5,
+      "outbound_m": 20,
+      "priority": 8
+    }
+  ]
+}
