@@ -51,7 +51,7 @@ All five studies include a responsive English/Portuguese interface, keyboard foc
 | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------- |
 | [Supplies for an event](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=baseline)           | Compare priorities, return trips and an overloaded box.           | 2 supplies · 51.8/55 Wh · 12 priority  |
 | [Library workshop](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=library-outreach)        | Five supplies compete for the same energy budget.                 | 3 supplies · 54.72/55 Wh · 19 priority |
-| [Lower starting charge](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=low-charge)         | A larger reserve leaves less energy for the exercise.             | 1 supplies · 12.6/15 Wh · 6 priority   |
+| [Lower starting charge](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=low-charge)         | A larger reserve leaves less energy for the exercise.             | 1 supply · 12.6/15 Wh · 6 priority   |
 | [The carrier has mass too](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=carrier-mass)    | Increase carrier mass and review the exclusions.                  | 3 supplies · 40.9/55 Wh · 13 priority  |
 | [Uncertain energy cost](https://galafis.github.io/vbot-community-cargo-planner/?lang=en&example=energy-uncertainty) | A higher energy-cost assumption can change the optimal selection. | 2 supplies · 53.12/55 Wh · 14 priority |
 
@@ -141,7 +141,7 @@ O projeto está pronto para exploração em software. Os exemplos são fictício
 | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------- |
 | [Materiais para um evento](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=baseline)      | Compare prioridade, retorno e uma caixa que excede a carga.     | 2 materiais · 51.8/55 Wh · 12 pontos  |
 | [Oficina na biblioteca](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=library-outreach) | Cinco materiais concorrem pelo mesmo orçamento de energia.      | 3 materiais · 54.72/55 Wh · 19 pontos |
-| [Carga inicial reduzida](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=low-charge)      | Uma reserva maior deixa menos energia disponível para a missão. | 1 materiais · 12.6/15 Wh · 6 pontos   |
+| [Carga inicial reduzida](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=low-charge)      | Uma reserva maior deixa menos energia disponível para a missão. | 1 material · 12.6/15 Wh · 6 pontos   |
 | [O suporte também pesa](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=carrier-mass)     | Aumente a massa do suporte e reveja as exclusões.               | 3 materiais · 40.9/55 Wh · 13 pontos  |
 | [Consumo incerto](https://galafis.github.io/vbot-community-cargo-planner/?lang=pt&example=energy-uncertainty)     | Uma hipótese de consumo maior pode mudar a seleção ótima.       | 2 materiais · 53.12/55 Wh · 14 pontos |
 

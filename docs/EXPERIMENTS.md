@@ -40,7 +40,7 @@ Uma reserva maior deixa menos energia disponível para a missão.
 
 - Input: [examples/low-charge.json](../examples/low-charge.json)
 - Expected core output: [examples/low-charge.expected.json](../examples/low-charge.expected.json)
-- Reproduced result: **1 supplies · 12.6/15 Wh · 6 priority**
+- Reproduced result: **1 supply · 12.6/15 Wh · 6 priority**
 
 ```sh
 node cli.mjs examples/low-charge.json
